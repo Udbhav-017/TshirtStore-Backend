@@ -39,6 +39,9 @@ const product = require('./routes/product');
 const payment = require('./routes/payment');
 const order = require('./routes/order');
 
+app.get('/', async(req, res, next) => {
+    res.redirect('/api/v1');
+});
 
 // Router middlewares:
 app.use('/api/v1', home);
