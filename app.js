@@ -5,6 +5,8 @@ require('dotenv')
 const morgan = require('morgan')
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
+const {authorization} = require('./middlewares/auth');
+
 
 const app = express();
 
@@ -31,6 +33,7 @@ app.set("view engine","ejs");
 // Morgan middlewares
 app.use(morgan("tiny"));
 
+app.use('/', authorization);
 
 // Import all routes here:
 const home =  require('./routes/home');
@@ -40,7 +43,7 @@ const payment = require('./routes/payment');
 const order = require('./routes/order');
 
 app.get('/', async(req, res, next) => {
-    res.redirect('/api/v1');
+    res.redirect(`/api/v1?apiKey=${req.query.apiKey}`);
 });
 
 // Router middlewares:
