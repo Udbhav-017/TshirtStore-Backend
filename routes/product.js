@@ -11,7 +11,7 @@ router.route('/addReview').delete(deleteReview);
 router.route('/product/:id').get(getOneProduct);
 
 //  admin routes
-router.route('/createProduct').post(isLoggedIn, customRole('admin') , addProduct);
+router.route('/admin/product/add').post(isLoggedIn, customRole('admin') , addProduct);
 router.route('/admin/products').get(isLoggedIn, customRole('admin') , adminGetAllProduct);
 router.route('/admin/product/:id')
                         .put(isLoggedIn, customRole('admin') , adminUpdateOneProduct)
